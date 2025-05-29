@@ -1,0 +1,175 @@
+/* Global Styling */
+.services {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #0a0f1c, #1b2a4b, #2d416f);
+  color: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+/* Hero Section */
+.hero {
+  background: url("../assets/images/pc.jpg") no-repeat center center/cover;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100vw;
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 50px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.2);
+  width: 80%;
+  max-width: 900px;
+}
+
+.hero h1 {
+  font-size: 50px;
+  font-weight: bold;
+  color: #00eaff;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: auto;
+  color: #ddd;
+}
+
+.accordion-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 80px 12%;
+  flex-wrap: wrap;
+  background: #0f141c;
+  gap: 40px;
+}
+
+.accordion-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.accordion-left .title {
+  font-size: 1.6rem;
+  background: linear-gradient(90deg, #ff7d61, #ffd859);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.accordion-left h2 {
+  font-size: 3.5rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.accordion-left p {
+  color: #ccc;
+  font-size: 1.1rem;
+  max-width: 480px;
+}
+
+.accordion-right {
+  flex: 1;
+  min-width: 300px;
+}
+
+.accordion-item {
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.accordion-header h3 {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.accordion-header h3.active {
+  background: linear-gradient(90deg, #ff7d61, #ffd859);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.accordion-header i {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.accordion-body {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: 0.4s ease;
+}
+
+.accordion-body.open {
+  max-height: 1500px;
+  opacity: 1;
+  margin-top: 15px;
+}
+
+.accordion-body .main-desc {
+  color: #ccc;
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.sub-accordion {
+  margin-bottom: 15px;
+}
+
+.sub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+.sub-header span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+}
+
+.sub-header.active span {
+  background: linear-gradient(90deg, #ff7d61, #ffd859);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sub-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding-left: 15px;
+  transition: 0.4s ease;
+}
+
+.sub-content.open {
+  max-height: 300px;
+  opacity: 1;
+  margin-top: 8px;
+}
+
+.sub-content p {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.5;
+}

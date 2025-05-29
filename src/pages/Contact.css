@@ -1,0 +1,100 @@
+/* Contact Section */
+.contact {
+  text-align: center;
+  padding: 80px 10%;
+  background: linear-gradient(135deg, #0f1c3a, #162c5b);
+  color: white;
+}
+
+/* Contact Heading */
+.contact h1 {
+  font-size: 46px;
+  margin-bottom: 15px;
+  color: #ffcc00;
+}
+
+.contact p {
+  font-size: 20px;
+  margin-bottom: 40px;
+  opacity: 0.8;
+}
+
+/* Contact Form */
+.contact-form {
+  max-width: 600px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 35px;
+  border-radius: 15px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0px 10px 30px rgba(0, 217, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Input Fields */
+.contact-form .input-group {
+  display: flex;
+  gap: 15px;
+}
+
+.contact-form .input-group input {
+  width: 50%;
+}
+
+/* Styling for All Inputs and Textarea */
+.contact-form input,
+.contact-form textarea {
+  width: 95%;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 18px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  outline: none;
+  transition: 0.3s ease-in-out;
+}
+
+/* Fixing Textarea Alignment */
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Input Focus Effect */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Submit Button */
+.contact-form button {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(45deg, #ff6f61, #ff4757);
+  color: white;
+  transition: 0.3s ease-in-out;
+}
+
+.contact-form button:hover {
+  background: linear-gradient(45deg, #ff4757, #ff1e32);
+  transform: scale(1.05);
+}
+
+/* Responsive Fix */
+@media screen and (max-width: 600px) {
+  .contact-form .input-group {
+      flex-direction: column;
+  }
+
+  .contact-form .input-group input {
+      width: 100%;
+  }
+}
