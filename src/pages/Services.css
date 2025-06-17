@@ -171,7 +171,8 @@
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  gap: 20px;
+  row-gap: 200px;
   max-width: 1200px;
   margin: 0 auto;
 }

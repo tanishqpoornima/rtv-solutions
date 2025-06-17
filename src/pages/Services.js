@@ -250,9 +250,9 @@ const Services = () => {
         viewport={{ once: false, amount: 0.2 }}
       >
         <motion.h2 variants={fadeInUp}>What We Offer</motion.h2>
-        <motion.div className="services-grid" variants={staggerContainer}>
+        <motion.div className="services-grid" variants={staggerContainer} >
           {services.map((service, index) => (
-            <motion.div
+            <motion.div 
               key={index}
               className="service-card"
               variants={fadeInUp}
