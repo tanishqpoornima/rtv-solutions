@@ -169,7 +169,7 @@ const Contact = () => {
               <div className="contact-icon">📧</div>
               <div>
                 <h3>Email Us</h3>
-                <p>hello@rtvsolutions.com</p>
+                <p>adminrtv@rtv-solutions-pvt.com</p>
               </div>
             </motion.div>
             {/* temporarily blocked */}
