@@ -38,15 +38,15 @@ const Contact = () => {
     console.log("Form submitted:", formData)
     
     emailjs.send(
-      "service_3osalza","template_g2b75rs",
+      process.env.REACT_APP_SERVICE_ID,process.env.REACT_APP_TEMPLATE_ID,
       {
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
         subject: formData.subject,
-        message: formData.message
-      },
-      "2hTcOW_WCZPyYy_F2",
+        message: formData.message,
+        },
+      process.env.REACT_APP_USER_ID,
     ) .then((res)=>{
       console.log('Email sent successfully!', res.status, res.text)
       alert("Thanks! We've got your email.")
