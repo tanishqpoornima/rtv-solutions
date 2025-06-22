@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import "./Services.css"
 import { motion, AnimatePresence } from "framer-motion"
+import { useNavigate } from "react-router-dom"
 
 const services = [
   {
@@ -134,7 +135,9 @@ const Services = () => {
   const [activeIndex, setActiveIndex] = useState(null)
   const [activeSubIndex, setActiveSubIndex] = useState(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  
 
+  const navigate = useNavigate()
   // Track mouse position for interactive effects
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -368,11 +371,14 @@ const Services = () => {
         <motion.p variants={fadeInUp}>
           Let's discuss how our services can help transform your business and achieve your goals.
         </motion.p>
-       <Link to="/contact">
-        <motion.button className="cta-button" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+       
+        <motion.button className="cta-button" onClick={() => {
+                  navigate("/contact")
+                  window.scrollTo({ top: 0, behavior: "smooth" })
+                }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           Contact Us Today <span className="button-arrow">→</span>
         </motion.button>
-       </Link>
+       
       </motion.div>
     </div>
   )
