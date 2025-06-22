@@ -49,7 +49,7 @@ const Contact = () => {
       "2hTcOW_WCZPyYy_F2",
     ) .then((res)=>{
       console.log('Email sent successfully!', res.status, res.text)
-      alert("Thanks! We've sent you an email.")
+      alert("Thanks! We've got your email.")
     }).catch((err) => {
       console.error('Failed to send email. Error:', err)
     })
