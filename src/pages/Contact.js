@@ -1,5 +1,7 @@
 "use client"
 
+import emailjs from 'emailjs-com'
+
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import "./Contact.css"
@@ -34,6 +36,24 @@ const Contact = () => {
     e.preventDefault()
     // Handle form submission here
     console.log("Form submitted:", formData)
+    
+    emailjs.send(
+      "service_3osalza","template_g2b75rs",
+      {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message
+      },
+      "2hTcOW_WCZPyYy_F2",
+    ) .then((res)=>{
+      console.log('Email sent successfully!', res.status, res.text)
+      alert("Thanks! We've sent you an email.")
+    }).catch((err) => {
+      console.error('Failed to send email. Error:', err)
+    })
+
     // Reset form
     setFormData({
       firstName: "",
@@ -152,7 +172,8 @@ const Contact = () => {
                 <p>hello@rtvsolutions.com</p>
               </div>
             </motion.div>
-
+            {/* temporarily blocked */}
+{/* 
             <motion.div className="contact-item" variants={fadeInUp}>
               <div className="contact-icon">📞</div>
               <div>
@@ -171,7 +192,7 @@ const Contact = () => {
                   Tech City, TC 12345
                 </p>
               </div>
-            </motion.div>
+            </motion.div> */}
           </div>
 
           <div className="social-links">

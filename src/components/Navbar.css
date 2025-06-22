@@ -13,7 +13,7 @@
 /* Flexbox Container */
 .navbar-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
 }
@@ -121,6 +121,7 @@
 @media screen and (max-width: 768px) {
   .menu-icon {
     display: block;
+    overflow: auto;
   }
 
   .nav-menu {
