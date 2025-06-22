@@ -1,0 +1,8 @@
+{
+  "routes": [
+    {
+      "route": "/services",
+      "redirect": "/services"
+    }
+  ]
+}
