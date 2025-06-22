@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import "./Services.css"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -367,9 +368,11 @@ const Services = () => {
         <motion.p variants={fadeInUp}>
           Let's discuss how our services can help transform your business and achieve your goals.
         </motion.p>
+       <Link to="/contact">
         <motion.button className="cta-button" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           Contact Us Today <span className="button-arrow">→</span>
         </motion.button>
+       </Link>
       </motion.div>
     </div>
   )
