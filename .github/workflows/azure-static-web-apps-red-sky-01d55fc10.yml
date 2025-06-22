@@ -20,10 +20,10 @@ jobs:
           submodules: true
           lfs: false
       
-      - name: Set Node.js version
+      - name: Set Node.js 20
         uses: actions/setup-node@v3
         with:
-          node-version: '22'  # <-- Change this to your desired version (e.g., 16, 20)
+          node-version: '20'  # <-- Change this to your desired version (e.g., 16, 20)
           
       - name: Build And Deploy
         id: builddeploy
