@@ -36,7 +36,9 @@ const Contact = () => {
     e.preventDefault()
     // Handle form submission here
     console.log("Form submitted:", formData)
-    
+    console.log("Service ID:", process.env.REACT_APP_SERVICE_ID)
+    console.log("Template ID:", process.env.REACT_APP_TEMPLATE_ID)
+    console.log("User ID:", process.env.REACT_APP_USER_ID)
     emailjs.send(
       process.env.REACT_APP_SERVICE_ID,process.env.REACT_APP_TEMPLATE_ID,
       {
@@ -169,7 +171,7 @@ const Contact = () => {
               <div className="contact-icon">📧</div>
               <div>
                 <h3>Email Us</h3>
-                <p>hello@rtvsolutions.com</p>
+                <p>adminrtv@rtv-solutions-pvt.com</p>
               </div>
             </motion.div>
             {/* temporarily blocked */}
