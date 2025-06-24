@@ -1,6 +1,7 @@
 "use client"
 
-import emailjs from 'emailjs-com'
+// import emailjs from 'emailjs-com'
+import emailjs from '@emailjs/browser';
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
