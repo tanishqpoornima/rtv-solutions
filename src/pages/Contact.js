@@ -175,7 +175,7 @@ const Contact = () => {
               </div>
             </motion.div>
             {/* temporarily blocked */}
-{/* 
+{
             <motion.div className="contact-item" variants={fadeInUp}>
               <div className="contact-icon">📞</div>
               <div>
@@ -183,7 +183,7 @@ const Contact = () => {
                 <p>+1 (555) 123-4567</p>
               </div>
             </motion.div>
-
+            /*
             <motion.div className="contact-item" variants={fadeInUp}>
               <div className="contact-icon">📍</div>
               <div>
