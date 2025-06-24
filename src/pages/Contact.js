@@ -37,6 +37,7 @@ const Contact = () => {
     e.preventDefault()
     // Handle form submission here
     console.log("Form submitted:", formData)
+    console.log("Console: ", process.env)
     console.log("Service ID:", process.env.REACT_APP_SERVICE_ID)
     console.log("Template ID:", process.env.REACT_APP_TEMPLATE_ID)
     console.log("User ID:", process.env.REACT_APP_USER_ID)
