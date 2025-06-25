@@ -1,6 +1,8 @@
 const fetch = require('node-fetch'); // Node.js-compatible fetch
 
 module.exports = async function (context, req) {
+  console.log("INSIDE THE EMAIL.jS request");
+  console.log(req);
   if (req.method !== 'POST') {
     context.res = {
       status: 405,
