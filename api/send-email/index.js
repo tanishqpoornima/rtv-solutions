@@ -1,8 +1,7 @@
-const emailjs = require("emailjs-com");
 context.log("contextdsadj")
 
 module.exports = async function (context, req) {
-  context.log("context")
+  context.log("📨 Incoming request to send-email");
   context.log(context)
   context.log(req)
   
