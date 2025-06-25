@@ -33,40 +33,72 @@ const Contact = () => {
     })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
-    console.log("Console: ", process.env)
-    console.log("Service ID:", process.env.REACT_APP_SERVICE_ID)
-    console.log("Template ID:", process.env.REACT_APP_TEMPLATE_ID)
-    console.log("User ID:", process.env.REACT_APP_USER_ID)
-    emailjs.send(
-      process.env.REACT_APP_SERVICE_ID,process.env.REACT_APP_TEMPLATE_ID,
-      {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        },
-      process.env.REACT_APP_USER_ID,
-    ) .then((res)=>{
-      console.log('Email sent successfully!', res.status, res.text)
-      alert("Thanks! We've got your email.")
-    }).catch((err) => {
-      console.error('Failed to send email. Error:', err)
-    })
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   // Handle form submission here
+  //   console.log("Form submitted:", formData)
+  //   console.log("Console: ", process.env)
+  //   console.log("Service ID:", process.env.REACT_APP_SERVICE_ID)
+  //   console.log("Template ID:", process.env.REACT_APP_TEMPLATE_ID)
+  //   console.log("User ID:", process.env.REACT_APP_USER_ID)
+  //   emailjs.send(
+  //     process.env.REACT_APP_SERVICE_ID,process.env.REACT_APP_TEMPLATE_ID,
+  //     {
+  //       firstName: formData.firstName,
+  //       lastName: formData.lastName,
+  //       email: formData.email,
+  //       subject: formData.subject,
+  //       message: formData.message,
+  //       },
+  //     process.env.REACT_APP_USER_ID,
+  //   ) .then((res)=>{
+  //     console.log('Email sent successfully!', res.status, res.text)
+  //     alert("Thanks! We've got your email.")
+  //   }).catch((err) => {
+  //     console.error('Failed to send email. Error:', err)
+  //   })
 
-    // Reset form
+  //   // Reset form
+  //   setFormData({
+  //     firstName: "",
+  //     lastName: "",
+  //     email: "",
+  //     subject: "",
+  //     message: "",
+  //   })
+  // }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+  
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
+        alert("Thanks! We've got your email.");
+      } else {
+        throw new Error(data.error || "Unknown error");
+      }
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      alert("Failed to send email. Please try again.");
+    }
+  
     setFormData({
       firstName: "",
       lastName: "",
       email: "",
       subject: "",
       message: "",
-    })
-  }
+    });
+  };
+
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 60 },
