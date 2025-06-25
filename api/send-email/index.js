@@ -1,10 +1,10 @@
 const emailjs = require("emailjs-com");
-console.log("contextdsadj")
+context.log("contextdsadj")
 
 module.exports = async function (context, req) {
-  console.log("context")
-  console.log(context)
-  console.log(req)
+  context.log("context")
+  context.log(context)
+  context.log(req)
   
   if (req.method !== "POST") {
     context.res = {
