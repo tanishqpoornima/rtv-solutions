@@ -25,7 +25,10 @@ module.exports = async function (context, req) {
   const serviceId = process.env.SERVICE_ID;
   const templateId = process.env.TEMPLATE_ID;
   const userId = process.env.USER_ID;
-
+  console.log('inside indexjs for sendemail');
+  console.log(serviceId);
+  console.log(templateId);
+  console.log(userId);
   try {
     const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
       method: "POST",
@@ -45,7 +48,8 @@ module.exports = async function (context, req) {
         },
       }),
     });
-
+    console.log(response);
+    
     if (!response.ok) {
       const error = await response.text();
       throw new Error(error);
