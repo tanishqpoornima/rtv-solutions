@@ -16,7 +16,8 @@ const Contact = () => {
     message: "",
   })
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-
+  const [loading, setLoading] = useState(false);
+  const [responseMessage, setResponseMessage] = useState("");
   // Track mouse position for interactive effects
   useEffect(() => {
     const handleMouseMove = (e) => {
