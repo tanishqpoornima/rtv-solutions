@@ -73,11 +73,11 @@ const Contact = () => {
     console.log("Form submitted:", formData);
   
     try {
-      await fetch("https://email-rtv-tjs-projects-3ab22142.vercel.app/api/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
+      response = await fetch("https://email-rtv-tjs-projects-3ab22142.vercel.app/api/send-email", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(formData)
+                });
 
       console.log("Sending EMAIL -------->");
       console.log(response);
