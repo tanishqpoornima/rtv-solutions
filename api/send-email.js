@@ -23,9 +23,11 @@ module.exports = async function (context, req) {
         },
       }),
     });
-
+    console.log("API JS ---------------->");
+    console.log(res);
     const result = await res.json();
-
+    console.log(result);
+    
     context.res = {
       status: 200,
       body: { message: 'Email sent', result },
