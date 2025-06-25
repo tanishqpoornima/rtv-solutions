@@ -1,7 +1,5 @@
-const fetch = require("node-fetch");
-
 module.exports = async function (context, req) {
-  console.log("✅ Function called");
+  context.log("✅ Function triggered");
 
   if (req.method !== "POST") {
     context.res = {
@@ -12,7 +10,7 @@ module.exports = async function (context, req) {
     return;
   }
 
-  const { firstName, lastName, email, subject, message } = req.body;
+  const { firstName, lastName, email, subject, message } = req.body || {};
 
   if (!firstName || !lastName || !email || !subject || !message) {
     context.res = {
@@ -29,13 +27,15 @@ module.exports = async function (context, req) {
   if (!serviceId || !templateId || !userId) {
     context.res = {
       status: 500,
-      body: { error: "Missing EmailJS configuration in environment variables" },
+      body: {
+        error: "Missing EmailJS configuration in environment variables",
+      },
     };
     return;
   }
 
   try {
-    const emailRes = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+    const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,12 +54,12 @@ module.exports = async function (context, req) {
       }),
     });
 
-    if (!emailRes.ok) {
-      const text = await emailRes.text();
-      throw new Error(`EmailJS error: ${text}`);
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`EmailJS error: ${errorText}`);
     }
 
-    const result = await emailRes.json();
+    const result = await res.json();
     context.res = {
       status: 200,
       body: {
@@ -68,6 +68,7 @@ module.exports = async function (context, req) {
       },
     };
   } catch (err) {
+    context.log("🔥 Email sending error:", err);
     context.res = {
       status: 500,
       body: {
