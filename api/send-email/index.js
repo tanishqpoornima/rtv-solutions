@@ -2,6 +2,7 @@ const fetch = require("node-fetch");
 
 module.exports = async function (context, req) {
   try {
+    console.log(req);
     if (req.method !== "POST") {
       context.res = {
         status: 405,
