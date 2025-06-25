@@ -1,6 +1,10 @@
 const emailjs = require("emailjs-com");
 
 module.exports = async function (context, req) {
+  console.log("context")
+  console.log(context)
+  console.log(req)
+  
   if (req.method !== "POST") {
     context.res = {
       status: 405,
