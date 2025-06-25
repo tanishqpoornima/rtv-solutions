@@ -73,7 +73,7 @@ const Contact = () => {
     console.log("Form submitted:", formData);
   
     try {
-      await fetch("https://your-vercel-app.vercel.app/api/send-email", {
+      await fetch("https://email-km08ivvp4-tjs-projects-3ab22142.vercel.app/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
