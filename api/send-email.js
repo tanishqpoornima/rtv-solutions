@@ -1,41 +1,48 @@
-const emailjs = require('emailjs-com'); // or use axios/fetch to call EmailJS REST API
+const fetch = require('node-fetch'); // Node.js-compatible fetch
+
 module.exports = async function (context, req) {
+  if (req.method !== 'POST') {
+    context.res = {
+      status: 405,
+      body: "Method Not Allowed",
+    };
+    return;
+  }
+
   const { firstName, lastName, email, subject, message } = req.body;
-
-  const serviceID = process.env.SERVICE_ID;
-  const templateID = process.env.TEMPLATE_ID;
-  const userID = process.env.USER_ID;
-
+  console.log("INSIDE THE EMAIL.jS");
+  console.log(process.env.SERVICE_ID);
+  console.log(process.env.TEMPLATE_ID);
+  console.log(process.env.USER_ID);
+  
   try {
-    const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        service_id: serviceID,
-        template_id: templateID,
-        user_id: userID,
+        service_id: process.env.SERVICE_ID,
+        template_id: process.env.TEMPLATE_ID,
+        user_id: process.env.USER_ID,
         template_params: {
           firstName,
           lastName,
           email,
           subject,
           message
-        },
-      }),
+        }
+      })
     });
-    console.log("API JS ---------------->");
-    console.log(res);
-    const result = await res.json();
-    console.log(result);
-    
+
+    const result = await response.json();
+
     context.res = {
       status: 200,
-      body: { message: 'Email sent', result },
+      body: { message: 'Email sent', result }
     };
   } catch (error) {
     context.res = {
       status: 500,
-      body: { error: 'Email send failed', details: error.toString() },
+      body: { error: 'Failed to send email', details: error.toString() }
     };
   }
 };
