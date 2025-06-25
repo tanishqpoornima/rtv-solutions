@@ -78,7 +78,8 @@ const Contact = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-  
+      console.log("Sending EMAIL -------->");
+      console.log(response);
       const data = await response.json();
       if (response.ok) {
         alert("Thanks! We've got your email.");
