@@ -70,10 +70,12 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setResponseMessage("");
     console.log("Form submitted:", formData);
   
     try {
-      response = await fetch("https://email-rtv-tjs-projects-3ab22142.vercel.app/api/send-email", {
+      const response = await fetch("https://email-rtv-tjs-projects-3ab22142.vercel.app/api/send-email", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify(formData)
@@ -83,22 +85,26 @@ const Contact = () => {
       console.log(response);
       const data = await response.json();
       if (response.ok) {
-        alert("Thanks! We've got your email.");
+        // alert("Thanks! We've got your email.");
+        setResponseMessage("✅ Email sent successfully!");
+        setFormData({ firstName: "", lastName: "", email: "", subject: "", message: "" });
       } else {
         throw new Error(data.error || "Unknown error");
       }
     } catch (error) {
       console.error("Failed to send email:", error);
-      alert("Failed to send email. Please try again.");
+      // alert("Failed to send email. Please try again.");
+      setResponseMessage("❌ Failed to send email. Please try again.");
+    }  finally {
+      setLoading(false);
     }
-  
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+    // setFormData({
+    //   firstName: "",
+    //   lastName: "",
+    //   email: "",
+    //   subject: "",
+    //   message: "",
+    // });
   };
 
 
