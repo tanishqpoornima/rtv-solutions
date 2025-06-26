@@ -77,10 +77,13 @@ const Contact = () => {
   
     try {
       const response = await fetch("https://email-7t4otg30h-tjs-projects-3ab22142.vercel.app/api/send-email", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(formData)
-                });
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData),
+        mode: "cors", // 🔑 Enable cross-origin request
+      });
 
       console.log("Sending EMAIL -------->");
       console.log(response);
