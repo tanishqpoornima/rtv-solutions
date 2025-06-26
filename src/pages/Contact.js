@@ -80,10 +80,11 @@ const Contact = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer RCvg_bVUmjCvOLKf4" // If required
+          "Authorization": "Bearer RCvg_bVUmjCvOLKf4"
         },
         body: JSON.stringify(formData)
       });
+
 
 
       console.log("Sending EMAIL -------->");
