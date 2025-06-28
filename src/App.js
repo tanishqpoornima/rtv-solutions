@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Contact from "./pages/Contact";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Home from "./pages/Home.js";
+import About from "./pages/About.js";
+import Services from "./pages/Services.js";
+import Contact from "./pages/Contact.js";
+import Navbar from "./components/Navbar.js";
+import Footer from "./components/Footer.js";
 import "./App.css";
 
 // "// redeploy trigger"

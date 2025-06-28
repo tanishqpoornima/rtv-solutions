@@ -76,19 +76,12 @@ const Contact = () => {
     console.log("Form submitted:", formData);
   
     try {
-      const response = await fetch("https://email-7t4otg30h-tjs-projects-3ab22142.vercel.app/api/send-email", {
+      const response = await fetch("http://localhost:5000/api/send-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer RCvg_bVUmjCvOLKf4"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
       });
 
-
-
-      console.log("Sending EMAIL -------->");
-      console.log(response);
       const data = await response.json();
       if (response.ok) {
         // alert("Thanks! We've got your email.");
@@ -228,7 +221,7 @@ const Contact = () => {
               <div className="contact-icon">📞</div>
               <div>
                 <h3>Call Us</h3>
-                <p>+1 (555) 123-4567</p>
+                <p>+91 7300063070</p>
               </div>
             </motion.div>
             /*

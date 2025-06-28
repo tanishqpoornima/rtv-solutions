@@ -229,7 +229,7 @@
 // export default Home;
 
 "use client"
-import Footer from "../components/Footer"
+import Footer from "../components/Footer.js"
 import { useState, useEffect } from "react"
 import "./Gourang_Home.css"
 import { useNavigate } from "react-router-dom"
