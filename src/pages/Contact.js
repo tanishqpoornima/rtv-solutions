@@ -76,7 +76,7 @@ const Contact = () => {
     console.log("Form submitted:", formData);
   
     try {
-      const response = await fetch("https://www.rtv-solutions-pvt.com/api/send-email", {
+      const response = await fetch("https://green-sea-0fb8abb10.2.azurestaticapps.net/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
