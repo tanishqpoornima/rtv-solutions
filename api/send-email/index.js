@@ -1,28 +1,23 @@
-const sendEmail = require('./send-email');
+import express from 'express';
+import cors from 'cors';
+import sendEmail from './send-email.js';
+import dotenv from 'dotenv';
 
-module.exports = async function (context, req) {
-  // ✅ Handle preflight (CORS OPTIONS) request
-  if (req.method === 'OPTIONS') {
-    context.res = {
-      status: 200,
-      headers: {
-        'Access-Control-Allow-Origin': ['https://rtv-solutions-pvt.com', 'https://www.rtv-solutions-pvt.com', 'https://green-sea-0fb8abb10.2.azurestaticapps.net', 'https://www.green-sea-0fb8abb10.2.azurestaticapps.net'], // 🔒 Replace with your domain in production
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type'
-      }
-    };
-    return;
-  }
+dotenv.config();
 
-  // ✅ Handle POST (send email)
-  const emailResponse = await sendEmail(req);
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-  context.res = {
-    ...emailResponse,
-    headers: {
-      'Access-Control-Allow-Origin': ['https://rtv-solutions-pvt.com', 'https://www.rtv-solutions-pvt.com', 'https://green-sea-0fb8abb10.2.azurestaticapps.net', 'https://www.green-sea-0fb8abb10.2.azurestaticapps.net'], // 🔒 Replace with 'https://rtv-solutions-pvt.com' if needed
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type'
-    }
-  };
-};
+app.use(cors({
+  origin: ['https://rtv-solutions-pvt.com', 'https://www.rtv-solutions-pvt.com'], // allow both
+  methods: ['POST'],
+  allowedHeaders: ['Content-Type']
+}));
+
+app.use(express.json());
+
+app.post('/api/send-email', sendEmail);
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
+});
