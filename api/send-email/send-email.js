@@ -1,13 +1,13 @@
-import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
+const nodemailer = require('nodemailer');
 
-dotenv.config();
-
-export default async function sendEmail(req, res) {
+module.exports = async function (req) {
   const { firstName, lastName, email, subject, message } = req.body;
 
   if (!firstName || !lastName || !email || !subject || !message) {
-    return res.status(400).json({ error: "All fields are required." });
+    return {
+      status: 400,
+      body: "Missing required fields"
+    };
   }
 
   const transporter = nodemailer.createTransport({
@@ -18,55 +18,53 @@ export default async function sendEmail(req, res) {
     }
   });
 
-  // 📨 Email to Admin (you)
-  const adminMailOptions = {
-    from: `"${firstName} ${lastName}" <${process.env.EMAIL_USER}>`,
+  const mailOptions = {
+    from: `"${firstName} ${lastName}" <${email}>`,
     to: process.env.EMAIL_TO,
     replyTo: email,
-    subject: `New message from ${firstName} ${lastName}: ${subject}`,
+    subject: `New message: ${subject}`,
     text: message,
     html: `
       <div style="font-family: Arial, sans-serif;">
         <h3>New Contact Form Message</h3>
         <p><strong>From:</strong> ${firstName} ${lastName} (${email})</p>
         <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong><br>${message}</p>
-        <hr/>
-        <p style="font-size: 0.9em; color: #555;">Sent via Nodemailer backend</p>
-      </div>
-    `
-  };
-
-  // 📩 Email to User (confirmation)
-  const userMailOptions = {
-    from: `"RTV Solutions" <${process.env.EMAIL_TO}>`, // this will be the official sender
-    to: email,
-    subject: `We received your message, ${firstName}`,
-    text: `Hi ${firstName},\n\nThank you for contacting RTV Solutions. We’ve received your message and will get back to you soon.\n\nSubject: ${subject}\n\nYour message:\n${message}\n\nRegards,\nRTV Solutions`,
-    html: `
-      <div style="font-family: Arial, sans-serif;">
-        <h3>Hi ${firstName},</h3>
-        <p>Thank you for contacting <strong>RTV Solutions</strong>. We’ve received your message and will get back to you soon.</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Your message:</strong><br>${message}</p>
-        <br/>
-        <p>Regards,<br/>RTV Solutions Team</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
       </div>
     `
   };
 
   try {
-    // Send to admin
-    await transporter.sendMail(adminMailOptions);
-    console.log("✅ Email sent to admin");
+    await transporter.sendMail(mailOptions);
 
-    // Send to user
-    await transporter.sendMail(userMailOptions);
-    console.log("✅ Confirmation email sent to user");
+    // Send confirmation email to user
+    await transporter.sendMail({
+      from: `"RTV Solutions" <${process.env.EMAIL_TO}>`,
+      to: email,
+      subject: `We received your message, ${firstName}`,
+      text: `Hi ${firstName},\n\nThank you for reaching out to us.\n\nSubject: ${subject}\n\nMessage: ${message}`,
+      html: `
+        <div style="font-family: Arial, sans-serif;">
+          <h3>Hi ${firstName},</h3>
+          <p>Thank you for contacting <strong>RTV Solutions</strong>. We’ve received your message and will respond shortly.</p>
+          <p><strong>Subject:</strong> ${subject}</p>
+          <p><strong>Your Message:</strong><br>${message}</p>
+          <br/>
+          <p>Regards,<br/>RTV Solutions Team</p>
+        </div>
+      `
+    });
 
-    res.status(200).json({ message: "Emails sent successfully" });
+    return {
+      status: 200,
+      body: "Email sent successfully"
+    };
   } catch (error) {
-    console.error("❌ Email error:", error);
-    res.status(500).json({ error: "Failed to send emails", details: error.message });
+    console.error("SendMail error:", error);
+    return {
+      status: 500,
+      body: `Error sending email: ${error.message}`
+    };
   }
-}
+};
