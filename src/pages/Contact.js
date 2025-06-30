@@ -76,11 +76,20 @@ const Contact = () => {
     console.log("Form submitted:", formData);
   
     try {
-      const response = await fetch("/api/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'crazyduff8@gmail.com',
+          subject: 'Test',
+          message: 'Hello from the new site!'
+        })
+      })
+      .then(res => res.json())
+      .then(data => console.log(data));
+
 
       const data = await response.json();
       if (response.ok) {
